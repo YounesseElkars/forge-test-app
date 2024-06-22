@@ -3,7 +3,7 @@
 !function() {
   try {
     var e = "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {}, n = new Error().stack;
-    n && (e._sentryDebugIds = e._sentryDebugIds || {}, e._sentryDebugIds[n] = "c751f85d-565c-4652-914d-000bf5a0de04", e._sentryDebugIdIdentifier = "sentry-dbid-c751f85d-565c-4652-914d-000bf5a0de04");
+    n && (e._sentryDebugIds = e._sentryDebugIds || {}, e._sentryDebugIds[n] = "e52e9382-aeb2-4e5c-ac8a-c72d30380e64", e._sentryDebugIdIdentifier = "sentry-dbid-e52e9382-aeb2-4e5c-ac8a-c72d30380e64");
   } catch (e2) {
   }
 }();
@@ -11,6 +11,8 @@ const electron = require("electron");
 const path = require("path");
 const utils = require("@electron-toolkit/utils");
 const icon = path.join(__dirname, "../../resources/icon.png");
+var _global = typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
+_global.SENTRY_RELEASE = { id: "8d7bd1863f1e867e606d6b4a2fe2dc9a211c23cf" };
 const { localStorage } = require("electron-browser-storage");
 process.env.VITE_PUBLIC = path.join(__dirname, "../renderer/public");
 let win;
@@ -54,7 +56,7 @@ electron.app.whenReady().then(() => {
   });
 });
 electron.ipcMain.on("open-base-window", () => {
-  const basewin = new electron.BaseWindow({ width: 800, height: 600, parent: win, frame: false });
+  const basewin = new electron.BaseWindow({ width: 800, height: 600 });
   const leftView = new electron.WebContentsView();
   leftView.webContents.loadURL("https://electronjs.org");
   basewin.contentView.addChildView(leftView);
