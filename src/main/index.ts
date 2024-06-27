@@ -44,8 +44,7 @@ class MainApp {
 
     this.win.on('ready-to-show', async () => {
       this.win?.show();
-      await localStorage.setItem('favorite_number', 12);
-    });
+     });
 
     this.win.webContents.setWindowOpenHandler((details) => {
       shell.openExternal(details.url);

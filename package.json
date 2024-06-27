@@ -19,6 +19,7 @@
   "dependencies": {
     "-": "^0.0.1",
     "@electron-addons/electron-forge-maker-nsis": "^7.0.2",
+    "@electron-forge/maker-wix": "^7.4.0",
     "@electron-forge/publisher-s3": "^7.4.0",
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
@@ -100,7 +101,7 @@
     "vite-plugin-electron": "^0.28.4",
     "vite-plugin-electron-renderer": "^0.14.5"
   },
-   "build": {
+  "build": {
     "appId": "com.example.YourProjectName",
     "asar": true,
     "nsis": {

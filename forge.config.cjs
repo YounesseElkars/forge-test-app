@@ -10,10 +10,21 @@ module.exports = {
   rebuildConfig: {},
 
   makers: [
-    {
-      name: "@electron-addons/electron-forge-maker-nsis",
-      config: {},
+//    {
+ //     name: "@electron-addons/electron-forge-maker-nsis",
+  //    config: {},
+   // }
+   {
+    name: '@electron-forge/maker-wix',
+    config: {
+      language: 1033,
+      manufacturer: 'My Awesome Company',
+      ui :  { 
+        enabled : true ,
+        chooseDirectory : true
+      }
     }
+  }
   ],
   publishers: [
     {
