@@ -11,21 +11,9 @@ module.exports = {
 
   makers: [
     {
-      name: '@electron-forge/maker-squirrel',
-    },
-    {
-      name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
-      config: (arch) => ({}),
-    },
-    {
-      name: '@electron-forge/maker-deb',
+      name: "@electron-addons/electron-forge-maker-nsis",
       config: {},
-    },
-    {
-      name: '@electron-forge/maker-rpm',
-      config: {},
-    },
+    }
   ],
   publishers: [
     {

@@ -5,8 +5,7 @@ import icon from '../../resources/icon.png?asset';
 import { screen } from 'electron';
 import path from 'path';
 import WebViewManager from './WebViewManager';
-const { localStorage } = require('electron-browser-storage');
-
+ 
 process.env.VITE_PUBLIC = path.join(__dirname, '../renderer/public');
 
 class MainApp {
