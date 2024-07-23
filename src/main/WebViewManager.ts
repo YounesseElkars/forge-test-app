@@ -1,28 +1,34 @@
-import { BrowserWindow } from 'electron';
+import { app, BrowserWindow, Rectangle } from 'electron';
 import Skeleton from './Skeleton';
-import WebView from './webview';
+import WebView from './WebView';
 
 export default class WebViewManager {
   webViewList: WebView[] = [];
-  skeleton: Skeleton;
+  skeleton;
   win;
-  bounds;
+  bounds: Rectangle;
+  static browserOnTop = '';
 
-  constructor(win: BrowserWindow, bounds) {
+  constructor(win: BrowserWindow, bounds: Rectangle) {
     this.win = win;
     this.bounds = bounds;
-    this.skeleton = new Skeleton(win, bounds);
+    app.whenReady().then(this.createSkeleton.bind(this));
+  }
+
+  private createSkeleton() {
+    this.skeleton = new Skeleton(this.win, this.bounds);
   }
 
   addWebView(params) {
     this.webViewList.push(new WebView(this.win, params, this.bounds, this.skeleton));
-    this.skeleton = new Skeleton(this.win, this.bounds);
+    WebViewManager.browserOnTop = params;
   }
 
   showWebView(params) {
     this.webViewList.find((webView) => {
       if (webView.doesURLIncludeSubstring(params)) {
         webView.showWebView();
+        WebViewManager.browserOnTop = params;
       }
     });
   }

@@ -1,5 +1,7 @@
 import { BrowserWindow, WebContentsView } from 'electron';
 import Skeleton from './Skeleton';
+import { Rectangle } from 'electron';
+import WebViewManager from './WebViewManager';
 
 export default class WebView {
   private win: BrowserWindow;
@@ -7,7 +9,7 @@ export default class WebView {
   url;
   bounds;
 
-  constructor(win: BrowserWindow, url: string, bounds: { x: number; y: number; width: number; height: number }, skeleton: Skeleton) {
+  constructor(win: BrowserWindow, url: string, bounds: Rectangle, skeleton: Skeleton) {
     this.win = win;
     this.url = url;
     this.bounds = bounds;
@@ -20,10 +22,14 @@ export default class WebView {
     this.win.contentView.addChildView(this.view);
     this.view.setBounds(this.bounds);
     this.view.webContents.on('did-start-navigation', () => {
-      skeleton.showSkeleton();
+      if (this.url == WebViewManager.browserOnTop) {
+        skeleton.showSkeleton();
+      }
     });
     this.view.webContents.on('did-stop-loading', () => {
-      skeleton.hideSkeleton();
+      if (this.url == WebViewManager.browserOnTop) {
+        skeleton.hideSkeleton();
+      }
     });
   }
 
@@ -50,8 +56,9 @@ export default class WebView {
 
   removeWebView(): void {
     if (this.view) {
-      //      this.view.webContents.close();
+      // this.view.webContents.close();
       this.win.contentView.removeChildView(this.view);
+      this.view.webContents.close();
     }
   }
   changeURL() {

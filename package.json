@@ -5,9 +5,6 @@
   "main": "./dist/main/index.js",
   "author": "My Resa",
   "homepage": "./",
-  "buildDependenciesFromSource": true,
-  "nodeGypRebuild": false,
-  "npmRebuild": false,
   "scripts": {
     "start": "electron-vite preview --outDir=dist",
     "dev": "electron-vite dev --outDir=dist",
@@ -84,7 +81,7 @@
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
-    "electron": "^31.0.1",
+    "electron": "^31.1.0",
     "electron-builder": "^24.9.1",
     "electron-vite": "^2.0.0",
     "eslint": "^8.56.0",
